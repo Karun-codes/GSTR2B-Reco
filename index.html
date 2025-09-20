@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GSTR-2B Reconciliation Tool</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      body {
+        font-family: Calibri, 'Segoe UI', sans-serif;
+        background-color: #F3F4F6; /* Office-app light grey */
+      }
+      /* Excel-like Grid Styles */
+      .excel-grid {
+        border: 1px solid #D1D5DB;
+        overflow: hidden;
+        border-radius: 4px;
+      }
+      .excel-grid table {
+        border-collapse: collapse;
+        width: 100%;
+      }
+      .excel-grid th, .excel-grid td {
+        border: 1px solid #E5E7EB;
+        padding: 6px 10px;
+        font-size: 11pt;
+        white-space: nowrap;
+        color: #374151; /* Default dark text for all cells */
+      }
+      .excel-grid thead {
+        background-color: #F9FAFB;
+        position: sticky;
+        top: 0; /* This will be dynamically adjusted */
+        z-index: 10;
+      }
+      .excel-grid th {
+        font-weight: bold;
+        color: #374151;
+        cursor: pointer;
+      }
+      .excel-grid th .sort-icon {
+        opacity: 0.4;
+        display: inline-block;
+        margin-left: 8px;
+        width: 1em;
+      }
+       .excel-grid th:hover .sort-icon {
+        opacity: 1;
+      }
+      .excel-grid tbody tr:nth-child(even) {
+        background-color: #F9FAFB;
+      }
+      .excel-grid tbody tr:hover {
+        background-color: #EFF6FF;
+      }
+
+      /* Keyboard Focus Style */
+      :focus-visible {
+        outline: 2px solid #3B82F6 !important;
+        outline-offset: 1px;
+        border-radius: 2px;
+      }
+
+      /* Match Status Colors */
+      .status-exact { background-color: #D1FAE5 !important; color: #064E3B; }
+      .status-partial, .status-probable { background-color: #FEF3C7 !important; color: #78350F; }
+      .status-unmatched { background-color: #FEE2E2 !important; color: #991B1B; }
+      .status-gstr2b-only { background-color: #DBEAFE !important; color: #1E40AF; }
+      .status-books-only { background-color: #FEF9C3 !important; color: #854D0E; }
+      .status-rcm { background-color: #E0E7FF !important; color: #312E81; } /* For Reverse Charge */
+      .status-ineligible { background-color: #E5E7EB !important; color: #4B5563; } /* For Ineligible ITC */
+      .status-carried-forward { background-color: #EDE9FE !important; color: #5B21B6; } /* For Carried Forward */
+
+      /* Discrepancy Highlighting */
+      .cell-discrepancy {
+        background-color: #FEF9C3 !important; /* yellow-100 */
+        font-weight: 600;
+        color: #713F12; /* amber-800 */
+      }
+      
+      /* Stacked Row Pair Visual Separator */
+      .reco-row-pair-bottom {
+        border-bottom: 2px solid #A5B4FC; /* indigo-300 */
+      }
+
+
+      /* Toolbar/Ribbon */
+      .excel-ribbon {
+        background-color: #FFFFFF;
+        border-bottom: 1px solid #D1D5DB;
+        padding: 8px 12px;
+      }
+
+      /* Excel Sheet Tabs */
+      .excel-tabs {
+        background-color: #F3F4F6;
+        border-top: 1px solid #D1D5DB;
+        padding: 0 8px;
+      }
+      .excel-tab {
+        background-color: #E5E7EB;
+        border: 1px solid #D1D5DB;
+        border-bottom: none;
+        padding: 6px 12px;
+        margin-right: 4px;
+        margin-top: -1px;
+        border-radius: 6px 6px 0 0;
+        cursor: pointer;
+        color: #4B5563;
+        font-size: 11pt;
+      }
+      .excel-tab.active {
+        background-color: #FFFFFF;
+        color: #1D4ED8;
+        font-weight: 600;
+        border-top: 2px solid #3B82F6;
+        position: relative;
+        z-index: 5;
+      }
+      .excel-tab:not(.active):hover {
+        background-color: #F0F0F0;
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react/": "https://aistudiocdn.com/react@^19.1.1/",
+    "react": "https://aistudiocdn.com/react@^19.1.1",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.1.1/"
+  }
+}
+</script>
+</head>
+  <body class="bg-slate-50">
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
+</html>

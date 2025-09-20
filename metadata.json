@@ -1,0 +1,5 @@
+{
+  "name": "GSTR-2B Reconciliation Tool",
+  "description": "An Excel-like tool for automated reconciliation of your GSTR-2B and Purchase Register (Books) data using official GSTN matching rules, including name-based fallbacks and tolerance settings.",
+  "requestFramePermissions": []
+}
